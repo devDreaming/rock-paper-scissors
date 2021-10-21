@@ -5,35 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="dist/style.css">
+  <link rel="stylesheet" href="src/styles/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <title>Rock, Paper, Scissors</title>
 
-  Score
-  Rules
-
-  You Picked
-  The House Picked
-
-  You Win
-  You Lose
-
-  Play Again
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
+  <div class="container">
+    <header id="header">
+      <h1>Rock<br>Paper<br>Scissors</h1>
+      <div id="score-card">
+        <p>Score</p>
+        <p id="score-count">12</p>
+      </div>
+    </header>
+
+    <div class="game-play">
+      <!-- Select player -->
+      <div class="player-select">
+        <button id="paper" class="player select paper">
+          <img src="images/icon-paper.svg" alt="paper">
+        </button>
+        <button id="scissors" class="player select scissors">
+          <img src="images/icon-scissors.svg" alt="scissors">
+        </button>
+        <button id="rock" class="player select rock">
+          <img src="images/icon-rock.svg" alt="rock">
+        </button>
+      </div>
+      <!-- Display battle -->
+      <!-- Display Results -->
+    </div>
+    
+    <div class="rules-link">
+      <button>Rules</button>
+    </div>
+
+    <div class="rules-popup">
+      <h4>Rules</h4>
+      <!-- Rules display -->
+      <button class="exit">X</button>
+    </div>
+  </div>
+
 
 
   
-  <div class="attribution">
+  <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </div> -->
   <script src="script.js"></script>
 </body>
 </html>
