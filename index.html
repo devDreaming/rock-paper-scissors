@@ -19,25 +19,41 @@
       <h1>Rock<br>Paper<br>Scissors</h1>
       <div id="score-card">
         <p>Score</p>
-        <p id="score-count">12</p>
+        <p id="score-count">0</p>
       </div>
     </header>
 
     <div class="game-play">
       <!-- Select player -->
-      <div class="player-select">
+      <div id="player-select">
         <button id="paper" class="player select paper">
-          <img src="images/icon-paper.svg" alt="paper">
+          <img src="images/icon-paper.svg" alt="paper" class="paper">
         </button>
         <button id="scissors" class="player select scissors">
-          <img src="images/icon-scissors.svg" alt="scissors">
+          <img src="images/icon-scissors.svg" alt="scissors" class="scissors">
         </button>
         <button id="rock" class="player select rock">
-          <img src="images/icon-rock.svg" alt="rock">
+          <img src="images/icon-rock.svg" alt="rock" class="rock">
         </button>
       </div>
       <!-- Display battle -->
+      <div id="battle">
+        <div id="you-picked">
+          <div id="paper" class="player fighting paper">
+            <img src="images/icon-paper.svg" alt="paper" class="paper">
+          </div>
+          <p>You picked</p>
+        </div>
+        <div id="house-picked">
+          <div id="house-placeholder"></div>
+          <p>The House picked</p>
+        </div>
+      </div>
       <!-- Display Results -->
+      <div id="results">
+        <p>You won</p>
+        <button id="play-again">Play Again</button>
+      </div>
     </div>
     
     <div class="rules-link">
