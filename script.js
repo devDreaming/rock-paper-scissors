@@ -15,18 +15,27 @@ const housePickedPlayerElement = document.getElementById('house-picked')
 const playAgainButton = document.getElementById("play-again")
 const resetSection = document.getElementById("results")
 const scoreDisplay = document.getElementById("score-count")
+const rulesButton = document.getElementById("rules-button")
+const rulesPopup = document.getElementById("rules-popup")
+const exitButton = document.getElementsByClassName("exit")
+const body = document.querySelector("body")
+const playerButtonImage = document.querySelector(".player-image.paper")
 
 let currentScore = 0;
 let playerChoices = ['paper', 'rock', 'scissors']
 let chosenPlayer = ''
 let housePlayer = ''
 let winner = ''
+
 function choosePlayer(player) {
     chosenPlayer = player
     pickedPlayerElement.replaceChildren()
     pickedPlayerElement.innerHTML =
-        `<div id="${chosenPlayer}" class="player fighting ${chosenPlayer}">
-            <img src="images/icon-${chosenPlayer}.svg" alt="${chosenPlayer}" class="${chosenPlayer}">
+        `<div class="player">
+            <div id="${chosenPlayer}" class="player player-image fighting ${chosenPlayer}">
+                <img src="images/icon-${chosenPlayer}.svg" alt="${chosenPlayer}" class="${chosenPlayer}">
+            </div>
+            <div class="background ${chosenPlayer}"></div>
         </div>
         <p>You picked</p>`
 }
@@ -35,8 +44,11 @@ function chooseHousePlayer() {
     setTimeout(() => {
         housePickedPlayerElement.replaceChildren()
         housePickedPlayerElement.innerHTML =
-            `<div id="${housePlayer}" class="player fighting ${housePlayer}">
-                <img src="images/icon-${housePlayer}.svg" alt="${housePlayer}" class="${housePlayer}">
+            `<div class="player">
+                <div id="${housePlayer}" class="player player-image fighting ${housePlayer}">
+                    <img src="images/icon-${housePlayer}.svg" alt="${housePlayer}" class="${housePlayer}">
+                </div>
+                <div class="background ${housePlayer}"></div>
             </div>
             <p>The house picked</p>`
     }, 500)
@@ -105,7 +117,7 @@ function updateScore() {
     } else {
         currentScore = currentScore
     }
-    
+
     setTimeout(() => {
         scoreDisplay.innerHTML = currentScore
     }, 1200)
@@ -122,23 +134,39 @@ resetSection.addEventListener("click", () => {
         <p>The House picked</p>`
 })
 
+rulesButton.addEventListener("click", () => {
+    rulesPopup.classList.remove("close")
+    rulesPopup.classList.add("open")
+    body.style.overflow = "hidden"
+})
+
+rulesPopup.addEventListener("click", (e) => {
+    if (e.target.className == 'exit') {
+        console.log("exit")
+        rulesPopup.classList.remove("open")
+        rulesPopup.classList.add("close")
+    }
+})
+
 function battle(player) {
-    // Update display
-    playerSelectSection.style.display = "none"
-    battleSection.style.display = "flex"
-
-    // Select players
-    choosePlayer(player)
-    chooseHousePlayer()
-
-    // Calculate Winner
-    calculateWinner(player, housePlayer)
-
-    // Display results
-    displayResults(winner)
-
-    // Update Score
-    updateScore()
+    setTimeout(() => {
+        // Update display
+        playerSelectSection.style.display = "none"
+        battleSection.style.display = "flex"
+    
+        // Select players
+        choosePlayer(player)
+        chooseHousePlayer()
+    
+        // Calculate Winner
+        calculateWinner(player, housePlayer)
+    
+        // Display results
+        displayResults(winner)
+    
+        // Update Score
+        updateScore()
+    }, 200)
 }
 
 playerSelectSection.addEventListener("click", (e) => {
@@ -147,9 +175,11 @@ playerSelectSection.addEventListener("click", (e) => {
     } 
     if (e.target.className.includes('rock')) {
         battle("rock")
+
     }
     if (e.target.className.includes('scissors')) {
         battle("scissors")
+
     }
 })
 

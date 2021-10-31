@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
+  <script src="https://kit.fontawesome.com/266ee36e20.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="src/styles/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,21 +27,34 @@
     <div class="game-play">
       <!-- Select player -->
       <div id="player-select">
-        <button id="paper" class="player select paper">
-          <img src="images/icon-paper.svg" alt="paper" class="paper">
+        <svg class="triangle" xmlns="http://www.w3.org/2000/svg" width="305" height="277"><path fill="none" stroke="#000" stroke-width="27" d="M291.5 7.5H4.574c3.119 0 52.416 84.667 147.892 254L291.5 7.5z" opacity=".2"/></svg>
+        <button class="player select paper">
+          <div class="player-image paper">
+            <img src="images/icon-paper.svg" alt="paper" class="paper">
+          </div>
+          <div class="background paper"></div>
         </button>
-        <button id="scissors" class="player select scissors">
-          <img src="images/icon-scissors.svg" alt="scissors" class="scissors">
+        <button class="player select scissors">
+          <div class="player-image scissors">
+            <img src="images/icon-scissors.svg" alt="scissors" class="scissors">
+          </div>
+          <div class="background scissors"></div>
         </button>
-        <button id="rock" class="player select rock">
-          <img src="images/icon-rock.svg" alt="rock" class="rock">
+        <button class="player select rock">
+          <div class="player-image rock">
+            <img src="images/icon-rock.svg" alt="rock" class="rock">
+          </div>
+          <div class="background rock"></div>
         </button>
       </div>
       <!-- Display battle -->
       <div id="battle">
         <div id="you-picked">
-          <div id="paper" class="player fighting paper">
-            <img src="images/icon-paper.svg" alt="paper" class="paper">
+          <div class="player">
+            <div class="player-image fighting paper">
+              <img src="images/icon-paper.svg" alt="paper" class="paper">
+            </div>
+            <div class="background"></div>
           </div>
           <p>You picked</p>
         </div>
@@ -57,23 +71,19 @@
     </div>
     
     <div class="rules-link">
-      <button>Rules</button>
+      <button id="rules-button">Rules</button>
     </div>
 
-    <div class="rules-popup">
-      <h4>Rules</h4>
-      <!-- Rules display -->
-      <button class="exit">X</button>
+    <div id="rules-popup" class="">
+      <div class="rules-header">
+        <p>Rules</p>
+        <button id="exit-desktop" class="exit"><i class="fas fa-times"></i></button>
+      </div>
+      <img src="images/image-rules.svg" class="rules-image" alt="rock beats scissors beats paper beats rock">
+      <button id="exit-mobile" class="exit"><i class="fas fa-times"></i></button>
     </div>
   </div>
 
-
-
-  
-  <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
   <script src="script.js"></script>
 </body>
 </html>

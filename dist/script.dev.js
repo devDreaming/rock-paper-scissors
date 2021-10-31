@@ -16,6 +16,11 @@ var housePickedPlayerElement = document.getElementById('house-picked');
 var playAgainButton = document.getElementById("play-again");
 var resetSection = document.getElementById("results");
 var scoreDisplay = document.getElementById("score-count");
+var rulesButton = document.getElementById("rules-button");
+var rulesPopup = document.getElementById("rules-popup");
+var exitButton = document.getElementsByClassName("exit");
+var body = document.querySelector("body");
+var playerButtonImage = document.querySelector(".player-image.paper");
 var currentScore = 0;
 var playerChoices = ['paper', 'rock', 'scissors'];
 var chosenPlayer = '';
@@ -25,14 +30,14 @@ var winner = '';
 function choosePlayer(player) {
   chosenPlayer = player;
   pickedPlayerElement.replaceChildren();
-  pickedPlayerElement.innerHTML = "<div id=\"".concat(chosenPlayer, "\" class=\"player fighting ").concat(chosenPlayer, "\">\n            <img src=\"images/icon-").concat(chosenPlayer, ".svg\" alt=\"").concat(chosenPlayer, "\" class=\"").concat(chosenPlayer, "\">\n        </div>\n        <p>You picked</p>");
+  pickedPlayerElement.innerHTML = "<div class=\"player\">\n            <div id=\"".concat(chosenPlayer, "\" class=\"player player-image fighting ").concat(chosenPlayer, "\">\n                <img src=\"images/icon-").concat(chosenPlayer, ".svg\" alt=\"").concat(chosenPlayer, "\" class=\"").concat(chosenPlayer, "\">\n            </div>\n            <div class=\"background ").concat(chosenPlayer, "\"></div>\n        </div>\n        <p>You picked</p>");
 }
 
 function chooseHousePlayer() {
   housePlayer = playerChoices[Math.floor(Math.random() * 3)];
   setTimeout(function () {
     housePickedPlayerElement.replaceChildren();
-    housePickedPlayerElement.innerHTML = "<div id=\"".concat(housePlayer, "\" class=\"player fighting ").concat(housePlayer, "\">\n                <img src=\"images/icon-").concat(housePlayer, ".svg\" alt=\"").concat(housePlayer, "\" class=\"").concat(housePlayer, "\">\n            </div>\n            <p>The house picked</p>");
+    housePickedPlayerElement.innerHTML = "<div class=\"player\">\n                <div id=\"".concat(housePlayer, "\" class=\"player player-image fighting ").concat(housePlayer, "\">\n                    <img src=\"images/icon-").concat(housePlayer, ".svg\" alt=\"").concat(housePlayer, "\" class=\"").concat(housePlayer, "\">\n                </div>\n                <div class=\"background ").concat(housePlayer, "\"></div>\n            </div>\n            <p>The house picked</p>");
   }, 500);
 }
 
@@ -115,20 +120,34 @@ resetSection.addEventListener("click", function () {
 
   housePickedPlayerElement.innerHTML = "<div id=\"house-placeholder\"></div>\n        <p>The House picked</p>";
 });
+rulesButton.addEventListener("click", function () {
+  rulesPopup.classList.remove("close");
+  rulesPopup.classList.add("open");
+  body.style.overflow = "hidden";
+});
+rulesPopup.addEventListener("click", function (e) {
+  if (e.target.className == 'exit') {
+    console.log("exit");
+    rulesPopup.classList.remove("open");
+    rulesPopup.classList.add("close");
+  }
+});
 
 function battle(player) {
-  // Update display
-  playerSelectSection.style.display = "none";
-  battleSection.style.display = "flex"; // Select players
+  setTimeout(function () {
+    // Update display
+    playerSelectSection.style.display = "none";
+    battleSection.style.display = "flex"; // Select players
 
-  choosePlayer(player);
-  chooseHousePlayer(); // Calculate Winner
+    choosePlayer(player);
+    chooseHousePlayer(); // Calculate Winner
 
-  calculateWinner(player, housePlayer); // Display results
+    calculateWinner(player, housePlayer); // Display results
 
-  displayResults(winner); // Update Score
+    displayResults(winner); // Update Score
 
-  updateScore();
+    updateScore();
+  }, 200);
 }
 
 playerSelectSection.addEventListener("click", function (e) {

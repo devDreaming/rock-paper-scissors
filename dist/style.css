@@ -1,7 +1,5 @@
 html {
-  text-transform: uppercase;
   color: white;
-  font-weight: 600;
 }
 
 html, body, div, h1, h2, h3, h4, h5, h6, li, ul, ol, button, p, input, header {
@@ -11,13 +9,21 @@ html, body, div, h1, h2, h3, h4, h5, h6, li, ul, ol, button, p, input, header {
   border: none;
   box-sizing: border-box;
   font-family: "Barlow Semi Condensed", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
 }
 
 body {
   background: radial-gradient(#1f3756, #141539);
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100%;
   min-height: 100vh;
+  position: relative;
 }
 
 .container {
@@ -66,16 +72,34 @@ body {
   color: #3b4363;
 }
 
+.game-play {
+  min-height: 300px;
+  margin-bottom: 5rem;
+}
 .game-play #player-select {
   display: flex;
   flex-flow: row wrap;
-  max-width: 400px;
+  width: 360px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 5rem;
+  position: relative;
+}
+.game-play #player-select .player-image:active {
+  animation-name: press;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: forwards;
+  animation-fill-mode: forwards;
+}
+.game-play .triangle {
+  position: absolute;
+  transform: scale3d(0.63, 0.63, 0.63);
+  top: 1rem;
 }
 .game-play #battle {
   display: flex;
-  max-width: 300px;
+  max-width: 320px;
   justify-content: space-between;
   margin: 0 auto;
   display: none;
@@ -86,8 +110,8 @@ body {
   align-items: center;
 }
 .game-play #battle #house-placeholder {
-  width: 6rem;
-  height: 6rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   background-color: #141539;
   margin: 1rem 1.5rem;
@@ -96,17 +120,54 @@ body {
   letter-spacing: 1px;
 }
 .game-play .player {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+}
+.game-play .player .background {
   background-color: white;
-  width: 6rem;
-  height: 6rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
-  margin: 1rem 1.5rem;
+  z-index: 100;
+  position: absolute;
+  top: 5px;
+  margin: 0.5rem 1.2rem;
+}
+.game-play .player .background.paper {
+  background-color: #2648f2;
+}
+.game-play .player .background.scissors {
+  background-color: #c1810b;
+}
+.game-play .player .background.rock {
+  background-color: #ae1e38;
+}
+.game-play .player .player-image {
+  background-color: white;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  margin: 0.5rem 1.2rem;
   display: flex;
   align-content: center;
   justify-content: center;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
 }
-.game-play .player img {
+.game-play .player .player-image.paper {
+  border: 1rem solid #5671f5;
+}
+.game-play .player .player-image.scissors {
+  border: 1rem solid #eca922;
+}
+.game-play .player .player-image.rock {
+  border: 1rem solid #dd405d;
+}
+.game-play .player .player-image img {
   align-self: center;
+  max-width: 2.7rem;
 }
 .game-play #results {
   margin: 3rem auto 0 auto;
@@ -134,12 +195,55 @@ body {
 
 .rules-link {
   margin: 3rem auto 0 auto;
+  position: absolute;
+  bottom: 4rem;
 }
 .rules-link button {
   color: white;
+  padding: 0.5rem 2.05rem;
+  border: 3px solid #96989c;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  letter-spacing: 3px;
 }
 
-.rules-popup {
+#rules-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color: #3b4363;
+  padding: 5rem 2rem;
+  display: none;
+  transform: scale3d(0, 0, 0);
+}
+#rules-popup.open {
+  animation-duration: 1s;
+  animation-name: open;
+  animation-iteration-count: 1;
+  animation-direction: forwards;
+  animation-fill-mode: forwards;
+}
+#rules-popup.close {
+  animation-duration: 1s;
+  animation-name: close;
+  animation-iteration-count: 1;
+  animation-direction: forwards;
+  animation-fill-mode: forwards;
+}
+#rules-popup p {
+  font-size: 2rem;
+  font-weight: 700;
+}
+#rules-popup .exit i {
+  color: #e0e2e6;
+  font-size: 1.8rem;
+}
+#rules-popup #exit-desktop {
   display: none;
 }
 
@@ -165,5 +269,77 @@ body {
   #header #score-card #score-count {
     font-size: 4rem;
     line-height: 3.9rem;
+  }
+
+  .game-play .triangle {
+    top: 2.5rem;
+  }
+  .game-play #battle {
+    width: 550px;
+    max-width: 750px;
+  }
+  .game-play #player-select {
+    width: 550px;
+  }
+  .game-play .player {
+    width: 16rem;
+    height: 12rem;
+  }
+  .game-play .player .player-image {
+    margin: 0.5rem 3rem;
+    width: 10rem;
+    height: 10rem;
+  }
+  .game-play .player .player-image img {
+    width: 3.5rem;
+    max-width: 3.5rem;
+  }
+  .game-play .player .background {
+    margin: 0.5rem 3rem;
+    width: 10rem;
+    height: 10rem;
+  }
+  .game-play svg path {
+    stroke-width: 35;
+  }
+
+  #rules-popup {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+  #rules-popup #exit-desktop {
+    display: block;
+  }
+  #rules-popup #exit-mobile {
+    display: none;
+  }
+}
+@keyframes press {
+  0% {
+    transform: translate(0, 7px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 7px);
+  }
+}
+@keyframes open {
+  from {
+    transform: scale3d(0, 0, 0);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes close {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  to {
+    transform: scale3d(0, 0, 0);
   }
 }
