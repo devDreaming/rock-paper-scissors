@@ -364,7 +364,7 @@ body {
     }
 
     #rules-popup {
-        background-color: transparent;
+        background-color: unset;
 
         .header {
             display: flex;
@@ -382,7 +382,7 @@ body {
         }
 
         img {
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
 
         #exit-desktop {

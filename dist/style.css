@@ -313,7 +313,7 @@ body {
   }
 
   #rules-popup {
-    background-color: transparent;
+    background-color: unset;
   }
   #rules-popup .header {
     display: flex;
@@ -329,7 +329,7 @@ body {
     max-height: unset;
   }
   #rules-popup img {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
   #rules-popup #exit-desktop {
     display: block;
