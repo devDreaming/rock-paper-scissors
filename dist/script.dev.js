@@ -1,14 +1,6 @@
 "use strict";
 
-/**
- * Game states:
- * Choose option
- * Display chosen option - PAUSE - display computer's option - PAUSE - Display who won and a "Play again" button
- * 
- * 
- * 
- */
-// Elements
+/// Elements
 var playerSelectSection = document.getElementById('player-select');
 var battleSection = document.getElementById('battle');
 var pickedPlayerElement = document.getElementById('you-picked');
@@ -25,7 +17,7 @@ var currentScore = 0;
 var playerChoices = ['paper', 'rock', 'scissors'];
 var chosenPlayer = '';
 var housePlayer = '';
-var winner = '';
+var winner = ''; /// FUNCTIONS
 
 function choosePlayer(player) {
   chosenPlayer = player;
@@ -113,26 +105,6 @@ function updateScore() {
   }, 1200);
 }
 
-resetSection.addEventListener("click", function () {
-  playerSelectSection.style.display = "flex";
-  battleSection.style.display = "none";
-  resetSection.style.display = "none"; // Reset house circle
-
-  housePickedPlayerElement.innerHTML = "<div id=\"house-placeholder\"></div>\n        <p>The House picked</p>";
-});
-rulesButton.addEventListener("click", function () {
-  rulesPopup.classList.remove("close");
-  rulesPopup.classList.add("open");
-  body.style.overflow = "hidden";
-});
-rulesPopup.addEventListener("click", function (e) {
-  if (e.target.className.includes('exit')) {
-    console.log("exit");
-    rulesPopup.classList.remove("open");
-    rulesPopup.classList.add("close");
-  }
-});
-
 function battle(player) {
   setTimeout(function () {
     // Update display
@@ -148,8 +120,26 @@ function battle(player) {
 
     updateScore();
   }, 200);
-}
+} /// EVENT LISTENERS
 
+
+resetSection.addEventListener("click", function () {
+  playerSelectSection.style.display = "flex";
+  battleSection.style.display = "none";
+  resetSection.style.display = "none"; // Reset house circle
+
+  housePickedPlayerElement.innerHTML = "<div id=\"house-placeholder\"></div>\n        <p>The House picked</p>";
+});
+rulesButton.addEventListener("click", function () {
+  rulesPopup.classList.remove("close");
+  rulesPopup.classList.add("open");
+});
+rulesPopup.addEventListener("click", function (e) {
+  if (e.target.className.includes('exit')) {
+    rulesPopup.classList.remove("open");
+    rulesPopup.classList.add("close");
+  }
+});
 playerSelectSection.addEventListener("click", function (e) {
   if (e.target.className.includes('paper')) {
     battle("paper");

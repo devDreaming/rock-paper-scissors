@@ -1,13 +1,4 @@
-/**
- * Game states:
- * Choose option
- * Display chosen option - PAUSE - display computer's option - PAUSE - Display who won and a "Play again" button
- * 
- * 
- * 
- */
-
-// Elements
+/// Elements
 const playerSelectSection = document.getElementById('player-select')
 const battleSection = document.getElementById('battle')
 const pickedPlayerElement = document.getElementById('you-picked')
@@ -27,6 +18,8 @@ let chosenPlayer = ''
 let housePlayer = ''
 let winner = ''
 
+
+/// FUNCTIONS
 function choosePlayer(player) {
     chosenPlayer = player
     pickedPlayerElement.replaceChildren()
@@ -39,6 +32,7 @@ function choosePlayer(player) {
         </div>
         <p>You picked</p>`
 }
+
 function chooseHousePlayer() {
     housePlayer = playerChoices[Math.floor((Math.random() * 3))];
     setTimeout(() => {
@@ -123,31 +117,6 @@ function updateScore() {
     }, 1200)
 }
 
-resetSection.addEventListener("click", () => {
-    playerSelectSection.style.display = "flex"
-    battleSection.style.display = "none"
-    resetSection.style.display = "none"
-
-    // Reset house circle
-    housePickedPlayerElement.innerHTML = 
-        `<div id="house-placeholder"></div>
-        <p>The House picked</p>`
-})
-
-rulesButton.addEventListener("click", () => {
-    rulesPopup.classList.remove("close")
-    rulesPopup.classList.add("open")
-    body.style.overflow = "hidden"
-})
-
-rulesPopup.addEventListener("click", (e) => {
-    if (e.target.className.includes('exit')) {
-        console.log("exit")
-        rulesPopup.classList.remove("open")
-        rulesPopup.classList.add("close")
-    }
-})
-
 function battle(player) {
     setTimeout(() => {
         // Update display
@@ -169,6 +138,31 @@ function battle(player) {
     }, 200)
 }
 
+
+/// EVENT LISTENERS
+resetSection.addEventListener("click", () => {
+    playerSelectSection.style.display = "flex"
+    battleSection.style.display = "none"
+    resetSection.style.display = "none"
+
+    // Reset house circle
+    housePickedPlayerElement.innerHTML = 
+        `<div id="house-placeholder"></div>
+        <p>The House picked</p>`
+})
+
+rulesButton.addEventListener("click", () => {
+    rulesPopup.classList.remove("close")
+    rulesPopup.classList.add("open")
+})
+
+rulesPopup.addEventListener("click", (e) => {
+    if (e.target.className.includes('exit')) {
+        rulesPopup.classList.remove("open")
+        rulesPopup.classList.add("close")
+    }
+})
+
 playerSelectSection.addEventListener("click", (e) => {
     if (e.target.className.includes('paper')) {
         battle("paper")
@@ -179,7 +173,6 @@ playerSelectSection.addEventListener("click", (e) => {
     }
     if (e.target.className.includes('scissors')) {
         battle("scissors")
-
     }
 })
 
