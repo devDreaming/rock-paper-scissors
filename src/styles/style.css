@@ -314,8 +314,8 @@ body {
   }
   .game-play #battle #house-placeholder {
     width: 10rem;
-    height: 10rem;
-    margin: .5rem 3rem;
+    height: calc(10rem + 5px);
+    margin: .5rem 3rem 1.2rem 3rem;
   }
   .game-play #player-select {
     width: 550px;
