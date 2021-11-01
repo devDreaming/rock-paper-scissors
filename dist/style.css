@@ -208,31 +208,36 @@ body {
 }
 
 #rules-popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  color: #3b4363;
+  padding: 5rem 2rem;
+  transform: scale3d(0, 0, 0);
+  z-index: 20000;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#rules-popup .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  width: 100%;
   height: 100%;
-  background-color: white;
-  color: #3b4363;
-  padding: 5rem 2rem;
-  display: none;
-  transform: scale3d(0, 0, 0);
+  max-height: 500px;
 }
 #rules-popup.open {
   animation-duration: 1s;
   animation-name: open;
   animation-iteration-count: 1;
-  animation-direction: forwards;
   animation-fill-mode: forwards;
 }
 #rules-popup.close {
   animation-duration: 1s;
   animation-name: close;
   animation-iteration-count: 1;
-  animation-direction: forwards;
   animation-fill-mode: forwards;
 }
 #rules-popup p {
@@ -275,8 +280,12 @@ body {
     top: 2.5rem;
   }
   .game-play #battle {
-    width: 550px;
     max-width: 750px;
+  }
+  .game-play #battle #house-placeholder {
+    width: 10rem;
+    height: 10rem;
+    margin: 0.5rem 3rem;
   }
   .game-play #player-select {
     width: 550px;
@@ -304,10 +313,23 @@ body {
   }
 
   #rules-popup {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
+    background-color: transparent;
+  }
+  #rules-popup .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  #rules-popup .container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    height: unset;
+    max-height: unset;
+  }
+  #rules-popup img {
+    padding: 0 1rem;
   }
   #rules-popup #exit-desktop {
     display: block;

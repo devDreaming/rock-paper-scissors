@@ -141,7 +141,7 @@ rulesButton.addEventListener("click", () => {
 })
 
 rulesPopup.addEventListener("click", (e) => {
-    if (e.target.className == 'exit') {
+    if (e.target.className.includes('exit')) {
         console.log("exit")
         rulesPopup.classList.remove("open")
         rulesPopup.classList.add("close")

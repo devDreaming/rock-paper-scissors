@@ -126,7 +126,7 @@ rulesButton.addEventListener("click", function () {
   body.style.overflow = "hidden";
 });
 rulesPopup.addEventListener("click", function (e) {
-  if (e.target.className == 'exit') {
+  if (e.target.className.includes('exit')) {
     console.log("exit");
     rulesPopup.classList.remove("open");
     rulesPopup.classList.add("close");
